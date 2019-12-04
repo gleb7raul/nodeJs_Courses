@@ -1,0 +1,22 @@
+{
+  "name": "homework_1",
+  "version": "1.0.0",
+  "description": "nodeJs first homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gleb7raul/nodeJs_Courses.git"
+  },
+  "author": "Hleb Nebiadukhin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gleb7raul/nodeJs_Courses/issues"
+  },
+  "homepage": "https://github.com/gleb7raul/nodeJs_Courses#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  }
+}
