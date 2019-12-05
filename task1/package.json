@@ -2,9 +2,11 @@
   "name": "homework_1",
   "version": "1.0.0",
   "description": "nodeJs first homework",
-  "main": "index.js",
+  "main": "task1.1.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "task1.1": "nodemon ./bin/www",
+    "task1.2": "nodemon ./bin/www task1.2.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,7 @@
   },
   "homepage": "https://github.com/gleb7raul/nodeJs_Courses#readme",
   "devDependencies": {
+    "eslint": "^6.7.2",
     "nodemon": "^2.0.1"
   }
 }
