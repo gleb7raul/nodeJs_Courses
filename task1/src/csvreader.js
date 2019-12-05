@@ -1,21 +1,43 @@
 const csvFilePath = './data/readFile.csv';
 const csv = require('csvtojson');
-//const converter=csv(parserParameters, streamOptions);
+const csvParser = require('csv-parser');
 const fs = require('fs');
 
 class CSVreader {
     constructor(){}
     init() {
         try {
-            csv()
-            .fromFile(csvFilePath)
-            .then((jsonObj)=>{
-                console.log(jsonObj);
-            });
+            this.readCSV();
+            this.csvToJsonObj();
             this.csvToTxt();
+           // this.lineParser();
         } catch {
             this.handleError();
         };
+    }
+
+    readCSV() {
+        fs.createReadStream(csvFilePath)
+        .pipe(csvParser())
+        .on('data', function(data){
+            try {
+                console.log(data);
+            }
+            catch(err) {
+                console.log(err);
+            }
+        })
+        .on('end',function(){
+            console.log('CSV file successfully processed');
+        }); 
+    }
+
+    csvToJsonObj() {
+        csv()
+        .fromFile(csvFilePath)
+        .then((jsonObj)=>{
+            console.log(jsonObj);
+        });
     }
 
     csvToTxt() {
@@ -25,9 +47,18 @@ class CSVreader {
         })
         .fromFile(csvFilePath)
         .then((jsonObj)=>{
-            const txtFile = JSON.stringify(jsonObj);
-            //fs.writeFileSync('test.json', txtFile.join(", "));
-            console.log(txtFile);
+            const newFile = JSON.stringify(jsonObj);
+            fs.writeFileSync('test.txt', newFile);
+            console.log(newFile);
+        });
+    }
+
+    lineParser() {
+        csv()
+        .preRawData((csvFilePath)=>{
+            var newData=csvRawData.replace('some value','another value');
+            console.log(newData);
+            return newData;
         });
     }
 
