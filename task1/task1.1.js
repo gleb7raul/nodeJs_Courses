@@ -1,5 +1,5 @@
-const reverse = require('./src/reverse.js');
+const Reverse = require('./src/reverse.js');
 
-const startTask = new reverse;
+const startTask = new Reverse;
 startTask.greeting();
 startTask.init();

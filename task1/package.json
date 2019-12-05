@@ -21,5 +21,9 @@
   "devDependencies": {
     "eslint": "^6.7.2",
     "nodemon": "^2.0.1"
+  },
+  "dependencies": {
+    "csv2json": "^2.0.2",
+    "csvtojson": "^2.0.10"
   }
 }
