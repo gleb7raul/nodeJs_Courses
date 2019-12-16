@@ -42,6 +42,21 @@ class User {
             user.age = req.body.age ? req.body.age : user.age;
         };
     };
+
+    getAutoSuggestUsers(req) {
+        const currentPartOfLogin = req.body.login;
+        const lengthStr = currentPartOfLogin.length;
+        if (currentPartOfLogin) {
+            const suggestLogins = [];
+            this.Users.forEach((oUser) => {
+                const currSuggest = oUser.login.substring(0, lengthStr);
+                if(currSuggest == currentPartOfLogin) {
+                    suggestLogins.push(oUser.login);
+                };
+            });
+            return suggestLogins;
+        };
+    };
 }
 
 module.exports = User;
