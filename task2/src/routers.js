@@ -9,6 +9,6 @@ router.post('/users', validator.body(querySchema), addData);
 router.put('/users/:id', updateData);
 router.get('/users/:id', getOneOfData);
 router.delete('/users/:id', deleteData);
-router.get('/', suggestData);
+router.get('/login', suggestData);
 
 module.exports = router;
