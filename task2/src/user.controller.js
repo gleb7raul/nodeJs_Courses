@@ -1,4 +1,4 @@
-const user = require('./userOperations.js');
+const user = require('./user.model.js');
 const User = new user;
 
 const getData = (req, res) => {
@@ -11,7 +11,7 @@ const getData = (req, res) => {
 
 const addData = (req, res) => {
     try {
-      res.status(200).json(User.setUser(req));
+      res.status(200).json(User.setUser(req, res));
     } catch (e) {
       res.status(500).send('Something broken!');
     }
@@ -19,10 +19,18 @@ const addData = (req, res) => {
 
 const updateData = (req, res) => {
     try {
-      res.status(200).json(User.updateUsers(req));
+      res.status(200).json(User.updateUsers(req, res));
     } catch (e) {
       res.status(500).send('Something broken!');
     }
+};
+
+const getOneOfData = (req, res) => {
+  try {
+    res.status(200).json(User.getUser(req, res));
+  } catch (e) {
+    res.status(500).send('Something broken!');
+  }
 };
 
 const deleteData = (req, res) => {
@@ -33,4 +41,12 @@ const deleteData = (req, res) => {
     }
 };
 
- module.exports = {getData, addData, updateData, deleteData};
+const suggestData = (req, res) => {
+  try {
+    res.status(200).json(User.getAutoSuggestUsers(req));
+  } catch (e) {
+    res.status(500).send('Something broken!');
+  }
+};
+
+ module.exports = {getData, addData, updateData, getOneOfData, deleteData, suggestData};
