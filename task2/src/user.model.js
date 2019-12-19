@@ -8,15 +8,15 @@ class User {
     };
 
     getUsers() {
-        return this.Users.filter((oUser) => oUser.isDeleted === false);
+        return this.Users.filter((oUser) => !oUser.isDeleted);
     };
 
     setUser(req, res) {
         const user = {
-            login: req.body.login || null,
-            id: req.body.id || Date.now(),
-            password: req.body.password || null,
-            age: req.body.age || null,
+            login: req.body.login,
+            id: Date.now(),
+            password: req.body.password,
+            age: req.body.age,
             isDeleted: false
         };
         this.Users.push(user);
@@ -36,10 +36,12 @@ class User {
     updateUsers(req, res) {
         const currentUser = req.params.id;
         if (currentUser) {
-            const user =  this.Users.find((oUser) => oUser.id === currentUser);
-            user.login = req.body.login ? req.body.login : user.login;
-            user.password = req.body.password ? req.body.password : user.password;
-            user.age = req.body.age ? req.body.age : user.age;
+            const user =  this.Users.find((oUser) => oUser.id === currentUser && !oUser.isDeleted);
+            if (user) {
+                user.login = req.body.login ? req.body.login : user.login;
+                user.password = req.body.password ? req.body.password : user.password;
+                user.age = req.body.age ? req.body.age : user.age;
+            };
         };
     };
 
@@ -47,7 +49,7 @@ class User {
         const currentUser = req.params.id;
         let user;
         if (currentUser) {
-            return user =  this.Users.find((oUser) => oUser.id === currentUser);
+            return user =  this.Users.find((oUser) => oUser.id === currentUser && !oUser.isDeleted);
         };
     };
 
@@ -57,9 +59,11 @@ class User {
         if (currentPartOfLogin) {
             const suggestLogins = [];
             this.Users.forEach((oUser) => {
-                const currSuggest = oUser.login.substring(0, lengthStr);
-                if(currSuggest.toLowerCase() === currentPartOfLogin.toLowerCase()) {
-                    suggestLogins.push(oUser.login);
+                if (!oUser.isDeleted) {
+                    const currSuggest = oUser.login.substring(0, lengthStr);
+                    if(currSuggest.toLowerCase() === currentPartOfLogin.toLowerCase()) {
+                        suggestLogins.push(oUser.login);
+                    };
                 };
             });
             return suggestLogins;
