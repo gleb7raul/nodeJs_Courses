@@ -1,9 +1,9 @@
-const user = require('./user.model.js');
-const User = new user;
+const User = require('./user.model.js');
+const user = new User;
 
 const getData = (req, res) => {
     try {
-      res.status(200).json(User.getUsers());
+      res.status(200).json(user.getUsers());
     } catch (e) {
       res.status(500).send('Something broken!');
     }
@@ -11,7 +11,7 @@ const getData = (req, res) => {
 
 const addData = (req, res) => {
     try {
-      res.status(200).json(User.setUser(req, res));
+      res.status(200).json(user.setUser(req, res));
     } catch (e) {
       res.status(500).send('Something broken!');
     }
@@ -19,7 +19,7 @@ const addData = (req, res) => {
 
 const updateData = (req, res) => {
     try {
-      res.status(200).json(User.updateUsers(req, res));
+      res.status(200).json(user.updateUsers(req, res));
     } catch (e) {
       res.status(500).send('Something broken!');
     }
@@ -27,7 +27,7 @@ const updateData = (req, res) => {
 
 const getOneOfData = (req, res) => {
   try {
-    res.status(200).json(User.getUser(req, res));
+    res.status(200).json(user.getUser(req, res));
   } catch (e) {
     res.status(500).send('Something broken!');
   }
@@ -35,7 +35,7 @@ const getOneOfData = (req, res) => {
 
 const deleteData = (req, res) => {
     try {
-      res.status(200).json(User.deleteUser(req));
+      res.status(200).json(user.deleteUser(req));
     } catch (e) {
       res.status(500).send('Something broken!');
     }
@@ -43,7 +43,7 @@ const deleteData = (req, res) => {
 
 const suggestData = (req, res) => {
   try {
-    res.status(200).json(User.getAutoSuggestUsers(req));
+    res.status(200).json(user.getAutoSuggestUsers(req));
   } catch (e) {
     res.status(500).send('Something broken!');
   }
