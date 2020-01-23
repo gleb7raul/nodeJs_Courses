@@ -1,11 +1,11 @@
 {
-  "name": "homework_2",
+  "name": "homework_3",
   "version": "1.0.0",
-  "description": "nodeJs second homework",
-  "main": "task2.js",
+  "description": "nodeJs third homework",
+  "main": "task3.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "task2": "nodemon ./task2.js",
+    "task3": "nodemon ./task3.js",
     "build": "babel src -d lib"
   },
   "repository": {
@@ -28,8 +28,6 @@
   },
   "dependencies": {
     "@hapi/joi": "^16.1.8",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-joi-validation": "^4.0.3"

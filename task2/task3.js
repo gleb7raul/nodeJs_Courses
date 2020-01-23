@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
 const port = 8080;
-const routers = require('./src/routers.js');
+const routers = require('./src/router/routers.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
