@@ -1,6 +1,6 @@
 const express = require('express');
 const { getData, addData, updateData, getOneOfData, deleteData, suggestData} = require('./../controllers/user.controller.js');
-const { bodySchemaForCreate, bodySchemaForUpdate, paramsSchemaForUpdate, bodySchemaForSuggestLogin } = require('./../modules/validation.module.js');
+const { bodySchemaForCreate, bodySchemaForUpdate, paramsSchemaForUpdate, bodySchemaForSuggestLogin } = require('./../data-access/validation-data.js');
 const router = express.Router();
 const validator = require('express-joi-validation').createValidator({});
 
