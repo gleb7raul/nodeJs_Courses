@@ -1,0 +1,36 @@
+{
+  "name": "homework_3",
+  "version": "1.0.0",
+  "description": "nodeJs third homework",
+  "main": "task3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "task3": "nodemon ./task3.js",
+    "build": "babel src -d lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gleb7raul/nodeJs_Courses.git"
+  },
+  "author": "Hleb Nebiadukhin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gleb7raul/nodeJs_Courses/issues"
+  },
+  "homepage": "https://github.com/gleb7raul/nodeJs_Courses#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.5",
+    "eslint": "^6.7.2",
+    "nodemon": "^2.0.1"
+  },
+  "dependencies": {
+    "@hapi/joi": "^16.1.8",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-joi-validation": "^4.0.3",
+    "sequelize": "^5.21.3"
+  }
+}
