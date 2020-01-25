@@ -1,5 +1,7 @@
 const User = require('./models/user.model.js');
+const UserTable = require('./../module/table/user.table.js');
 const user = new User;
+const userTable = new UserTable;
 
 const getData = (req, res) => {
     try {
