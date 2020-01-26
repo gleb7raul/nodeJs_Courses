@@ -36,13 +36,13 @@ class User {
     };
 
     getUsers() {
-        this.Users.findAll({
+        return this.Users.findAll({
             where: {
                 isDeleted: false
             }
           }).then(users => {
-            console.log("All users:", JSON.stringify(users, null, 4));
-            return users;
+            console.log("All users:", JSON.parse(JSON.stringify(users, null, 4)));
+            return JSON.parse(JSON.stringify(users, null, 4));
           });
     };
 
@@ -96,15 +96,14 @@ class User {
     getUser(req, res) {
         const currentUser = req.params.id;
         if (currentUser) {
-            this.Users.findOne({
+            return this.Users.findOne({
                 where: {
                     id: currentUser,
                     isDeleted: false
                     }
             }).then((user) => {
-                console.log("Done");
-                console.log(user);
-                return user;
+                console.log("Current user:", JSON.parse(JSON.stringify(user, null, 4)));
+                return JSON.parse(JSON.stringify(user, null, 4));
               });
         };
     };
@@ -112,19 +111,20 @@ class User {
     getAutoSuggestUsers(req) {
         const currentPartOfLogin = req.body.login;
         const lengthStr = currentPartOfLogin.length;
-        const users = this.getUsers();
-        if (currentPartOfLogin && users.isArray()) {
-            const suggestLogins = [];
-            users.forEach((oUser) => {
-                if (!oUser.isDeleted) {
-                    const currSuggest = oUser.login.substring(0, lengthStr);
-                    if(currSuggest.toLowerCase() === currentPartOfLogin.toLowerCase()) {
-                        suggestLogins.push(oUser.login);
+        return this.getUsers().then((users)=>{
+            if (currentPartOfLogin && users) {
+                const suggestLogins = [];
+                users.forEach((oUser) => {
+                    if (!oUser.isDeleted) {
+                        const currSuggest = oUser.login.substring(0, lengthStr);
+                        if(currSuggest.toLowerCase() === currentPartOfLogin.toLowerCase()) {
+                            suggestLogins.push(oUser.login);
+                        };
                     };
-                };
-            });
-            return suggestLogins;
-        };
+                });
+                return suggestLogins;
+            };
+        });
     };
 }
 

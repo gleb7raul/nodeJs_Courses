@@ -3,7 +3,7 @@ const user = new User;
 
 const getData = (req, res) => {
     try {
-      res.status(200).json(user.getUsers());
+      user.getUsers().then((users) => res.status(200).json(users));
     } catch (e) {
       res.status(500).send('Something broken!');
     }
@@ -27,7 +27,7 @@ const updateData = (req, res) => {
 
 const getOneOfData = (req, res) => {
   try {
-    res.status(200).json(user.getUser(req, res));
+    user.getUser(req, res).then((user) => res.status(200).json(user));
   } catch (e) {
     res.status(500).send('Something broken!');
   }
@@ -43,7 +43,7 @@ const deleteData = (req, res) => {
 
 const suggestData = (req, res) => {
   try {
-    res.status(200).json(user.getAutoSuggestUsers(req));
+    user.getAutoSuggestUsers(req).then((suggestsData) => res.status(200).json(suggestsData));
   } catch (e) {
     res.status(500).send('Something broken!');
   }
