@@ -30,18 +30,13 @@ UserTable.sync({ force: true })
     })
     .catch(error => console.log(error));
   
-
 class User {
     constructor(){
-        this.Users = [
-            { login: 'admin', id: '1', password: '12345', age: 20, isDeleted: false },
-            { login: 'UserOfHeadOffice', id: '2', password: 'bar', age: 21, isDeleted: false },
-            { login: 'user', id: '3', password: 'test', age: 22, isDeleted: false }
-        ];
+        this.Users = UserTable;
     };
 
     getUsers() {
-        UserTable.findAll({
+        this.Users.findAll({
             where: {
                 isDeleted: false
             }
@@ -52,7 +47,7 @@ class User {
     };
 
     setUser(req, res) {
-        UserTable.create({
+        this.Users.create({
             login: req.body.login,
             id: Date.now(),
             password: req.body.password,
@@ -66,7 +61,7 @@ class User {
     deleteUser(req) {
         const currentUser = req.params.id;
         if (currentUser) {
-            UserTable.update({
+            this.Users.update({
                 isDeleted: true,
               }, {
                 where: {
@@ -82,7 +77,7 @@ class User {
     updateUsers(req, res) {
         const currentUser = req.params.id;
         if (currentUser) {
-            UserTable.update({
+            this.Users.update({
                 login: req.body.login ? req.body.login : user.login,
                 password: req.body.password ? req.body.password : user.password,
                 age: req.body.age ? req.body.age : user.age
@@ -100,9 +95,8 @@ class User {
 
     getUser(req, res) {
         const currentUser = req.params.id;
-        let user;
         if (currentUser) {
-            UserTable.findOne({
+            this.Users.findOne({
                 where: {
                     id: currentUser,
                     isDeleted: false
@@ -118,9 +112,10 @@ class User {
     getAutoSuggestUsers(req) {
         const currentPartOfLogin = req.body.login;
         const lengthStr = currentPartOfLogin.length;
-        if (currentPartOfLogin) {
+        const users = this.getUsers();
+        if (currentPartOfLogin && users.isArray()) {
             const suggestLogins = [];
-            this.Users.forEach((oUser) => {
+            users.forEach((oUser) => {
                 if (!oUser.isDeleted) {
                     const currSuggest = oUser.login.substring(0, lengthStr);
                     if(currSuggest.toLowerCase() === currentPartOfLogin.toLowerCase()) {
