@@ -52,36 +52,49 @@ class User {
     };
 
     setUser(req, res) {
-        const user = {
+        UserTable.create({
             login: req.body.login,
             id: Date.now(),
             password: req.body.password,
             age: req.body.age,
             isDeleted: false
-        };
-        this.Users.push(user);
+        }).then(() => {
+            console.log("Done");
+          });
     };
 
     deleteUser(req) {
         const currentUser = req.params.id;
         if (currentUser) {
-            this.Users.forEach((oUser) => {
-                if(oUser.id === currentUser) {
-                    oUser.isDeleted = true;
-                };
-            });
+            UserTable.update({
+                isDeleted: true,
+              }, {
+                where: {
+                  id: currentUser
+                  }
+                }
+            ).then(() => {
+                console.log("Done");
+              });
         };
     };
 
     updateUsers(req, res) {
         const currentUser = req.params.id;
         if (currentUser) {
-            const user =  this.Users.find((oUser) => oUser.id === currentUser && !oUser.isDeleted);
-            if (user) {
-                user.login = req.body.login ? req.body.login : user.login;
-                user.password = req.body.password ? req.body.password : user.password;
-                user.age = req.body.age ? req.body.age : user.age;
-            };
+            UserTable.update({
+                login: req.body.login ? req.body.login : user.login,
+                password: req.body.password ? req.body.password : user.password,
+                age: req.body.age ? req.body.age : user.age
+              }, {
+                where: {
+                  id: currentUser,
+                  isDeleted: false
+                  }
+                }
+            ).then(() => {
+                console.log("Done");
+              });
         };
     };
 
@@ -89,7 +102,16 @@ class User {
         const currentUser = req.params.id;
         let user;
         if (currentUser) {
-            return user =  this.Users.find((oUser) => oUser.id === currentUser && !oUser.isDeleted);
+            UserTable.findOne({
+                where: {
+                    id: currentUser,
+                    isDeleted: false
+                    }
+            }).then((user) => {
+                console.log("Done");
+                console.log(user);
+                return user;
+              });
         };
     };
 
