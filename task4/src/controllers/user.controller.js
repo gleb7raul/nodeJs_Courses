@@ -56,4 +56,4 @@ const suggestData = async (req, res) => {
   }
 };
 
- module.exports = {getData, addData, updateData, getOneOfData, deleteData, suggestData};
+module.exports = {getData, addData, updateData, getOneOfData, deleteData, suggestData};
