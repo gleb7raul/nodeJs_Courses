@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = 8080;
 const routers = require('./src/router/routers.js');
+const init = require('./src/controllers/dataHelper');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -21,3 +22,4 @@ const startService = () => {
 };
 
 startService();
+init();

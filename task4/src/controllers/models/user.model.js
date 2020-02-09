@@ -62,10 +62,6 @@
         const currentUser = req.params.id;
         if (currentUser) {
             return this.Users.findOne({
-                include: [{
-                    model: models.GroupTable,
-                    as: 'GroupTable'
-                  }],
                 where: {
                     id: currentUser,
                     isDeleted: false

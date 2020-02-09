@@ -1,5 +1,5 @@
 const Group = require('./models/group.model.js');
-const GroupTable = require('./dataHelper/groupsDataTable.js');
+const GroupTable = require('./../module/tables/group.table.js');
 const group = new Group(GroupTable);
 
 const getData = async (req, res) => {

@@ -1,4 +1,4 @@
-const sequelize = require('./../db/db.js');
+const sequelize = require('./../../controllers/dataHelper/db.js');
 const Sequelize = require('sequelize');
 
 const Model = Sequelize.Model;

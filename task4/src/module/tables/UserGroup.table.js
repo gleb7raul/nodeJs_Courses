@@ -1,4 +1,4 @@
-const sequelize = require('./../db/db.js');
+const sequelize = require('./../../controllers/dataHelper/db.js');
 const Sequelize = require('sequelize');
 const UserTable = require('./user.table.js');
 const GroupTable = require('./group.table.js');
