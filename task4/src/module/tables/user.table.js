@@ -27,7 +27,7 @@ UserTable.init({
   }
 }, {
   sequelize,
-  modelName: 'user'
+  modelName: 'UserTable'
 });
 
 module.exports = UserTable;

@@ -19,7 +19,7 @@ GroupTable.init({
   }
 }, {
   sequelize,
-  modelName: 'group'
+  modelName: 'GroupTable'
 });
 
 module.exports = GroupTable;

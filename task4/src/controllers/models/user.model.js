@@ -1,6 +1,7 @@
   class User {
-    constructor(UserTable){
+    constructor(UserTable, UserGroupTable){
         this.Users = UserTable;
+        this.UserGroup = UserGroupTable;
     };
 
     getUsers() {
@@ -61,6 +62,10 @@
         const currentUser = req.params.id;
         if (currentUser) {
             return this.Users.findOne({
+                include: [{
+                    model: models.GroupTable,
+                    as: 'GroupTable'
+                  }],
                 where: {
                     id: currentUser,
                     isDeleted: false
