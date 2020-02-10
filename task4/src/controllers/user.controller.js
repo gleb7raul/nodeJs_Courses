@@ -1,7 +1,11 @@
 const User = require('./models/user.model.js');
+const UserGroup = require('./models/group.model.js');
+const GroupTable = require('./../module/tables/group.table.js');
 const UserTable = require('./../module/tables/user.table.js');
 const UserGroupTable = require('./../module/tables/UserGroup.table.js');
-const user = new User(UserTable, UserGroupTable);
+const db = require('./dataHelper/db.js');
+const userGroup = new UserGroup(UserGroupTable, UserTable, GroupTable, db);
+const user = new User(UserTable, userGroup, db);
 
 const getData = async (req, res) => {
     try {

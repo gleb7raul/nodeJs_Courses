@@ -6,21 +6,20 @@ class GroupTable extends Model {}
 GroupTable.init({
     name: {
         type: Sequelize.STRING,
-        primaryKey: true,
         allowNull: false
-    },
+  },
     id: {
         type: Sequelize.STRING,
         allowNull: false,
         primaryKey: true
-    },
+  },
     permissions: {
         type: Sequelize.ARRAY(Sequelize.TEXT),
         allowNull: false
-    }
+  }
 }, {
-    sequelize,
-    modelName: 'GroupTable'
+  sequelize,
+  modelName: 'GroupTable'
 });
 
 module.exports = GroupTable;

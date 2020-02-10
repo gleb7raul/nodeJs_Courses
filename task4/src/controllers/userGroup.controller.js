@@ -2,7 +2,8 @@ const UserGroup = require('./models/userGroup.model.js');
 const UserTable = require('./../module/tables/user.table.js');
 const GroupTable = require('./../module/tables/group.table.js');
 const UserGroupTable = require('./../module/tables/UserGroup.table.js');
-const userGroup = new UserGroup(UserGroupTable, UserTable, GroupTable);
+const db = require('./dataHelper/db.js');
+const userGroup = new UserGroup(UserGroupTable, UserTable, GroupTable, db);
 
 const addUsersToGroup = async (req, res) => {
     try {

@@ -1,6 +1,8 @@
 class Group {
-    constructor(GroupTable){
+    constructor(GroupTable, userGroup, db){
         this.Groups = GroupTable;
+        this.UserGroups = userGroup;
+        this.db = db;
     };
 
     getGroups() {
@@ -49,17 +51,26 @@ class Group {
         };
     };
 
-    removeGroup(req) {
+    async removeGroup(req) {
+        let transaction;
         const currentGroup = req.params.id;
         if (currentGroup) {
-            return this.Groups.destroy({
-                where: {
-                  id: currentGroup
-                  }
-                }
-            ).then(() => {
-                console.log("Done");
-              });
+            try {
+                transaction = await this.db.transaction();
+                await this.UserGroups.deleteByGroupId(currentGroup);
+                const group = await this.Groups.destroy({
+                    where: {
+                        id: currentGroup
+                    },
+                    transaction,
+                    returning: true
+                });
+                await transaction.commit();
+                return group;
+            } catch (e) {
+                if (transaction) await transaction.rollback();
+                console.log(e);
+            }
         };
     };
 }
