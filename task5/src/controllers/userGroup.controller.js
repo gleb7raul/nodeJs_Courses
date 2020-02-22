@@ -12,7 +12,7 @@ const addUsersToGroup = async (req, res) => {
       res.status(200).json(data);
       debugInfo(`${req.method}, ${groupId, userIds}`);
     } catch (e) {
-      res.status(500).send('Something broken!');
+      res.status(500).send(`Method:${req.method}, Data: ${groupId, userIds}, Error:${e}`);
     }
 };
 

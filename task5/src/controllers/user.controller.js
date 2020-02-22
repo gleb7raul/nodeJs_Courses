@@ -13,7 +13,7 @@ const getData = async (req, res) => {
       res.status(200).json(data);
       debugInfo(`${req.method} ${req.url}`);
     } catch (e) {
-      res.status(500).send('Something broken!');
+      res.status(500).send(`Method:${req.method}, Data: ${req.url}, Error:${e}`);
     }
 };
 
@@ -23,7 +23,7 @@ const addData = async (req, res) => {
       res.status(200).json(data);
       debugInfo(`${req.method}, ${req.body}`);
     } catch (e) {
-      res.status(500).send('Something broken!');
+      res.status(500).send(`Method:${req.method}, Data: ${req.body}, Error:${e}`);
     }
 };
 
@@ -33,7 +33,7 @@ const updateData = async (req, res) => {
       res.status(200).json(data);
       debugInfo(`${req.method}, id:${req.params.id}, data:${req.body}`);
     } catch (e) {
-      res.status(500).send('Something broken!');
+      res.status(500).send(`Method:${req.method}, Data: { id:${req.params.id}, arguments:${req.body} }, Error:${e}`);
     }
 };
 
@@ -43,7 +43,7 @@ const getOneOfData = async (req, res) => {
     res.status(200).json(data);
     debugInfo(`${req.method}, id:${req.params.id}`);
   } catch (e) {
-    res.status(500).send('Something broken!');
+    res.status(500).send(`Method:${req.method}, Data: { id:${req.params.id} }, Error:${e}`);
   }
 };
 
@@ -53,7 +53,7 @@ const deleteData = async (req, res) => {
       res.status(200).json(data);
       debugInfo(`${req.method}, id:${req.params.id}`);
     } catch (e) {
-      res.status(500).send('Something broken!');
+      res.status(500).send(`Method:${req.method}, Data: { id:${req.params.id} }, Error:${e}`);
     }
 };
 
@@ -63,7 +63,7 @@ const suggestData = async (req, res) => {
     res.status(200).json(suggestsData);
     debugInfo(`${req.method}, ${req.body}`);
   } catch (e) {
-    res.status(500).send('Something broken!');
+    res.status(500).send(`Method:${req.method}, Data: ${req.body}, Error:${e}`);
   }
 };
 
