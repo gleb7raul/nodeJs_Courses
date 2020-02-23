@@ -7,10 +7,20 @@ const init = require('./src/controllers/dataHelper');
 const debug = require('debug');
 
 debugInfo = debug('info');
+debugError = debug('error');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(routers);
+
+process.on('uncaughtException', err => {
+    console.log(`Error tracking: ${err.stack}`);
+    console.log(`/==============/`);
+});
+
+process.on('unhandledRejection', err => {
+    console.log('unhandledRejection', err.message);
+  });
 
 const startService = () => {
     app.get('/', function(req, res) {

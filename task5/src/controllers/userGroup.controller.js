@@ -13,6 +13,7 @@ const addUsersToGroup = async (req, res) => {
       debugInfo(`${req.method}, ${groupId, userIds}`);
     } catch (e) {
       res.status(500).send(`Method:${req.method}, Data: ${groupId, userIds}, Error:${e}`);
+      debugError('500 Internal Server Error');
     }
 };
 

@@ -14,6 +14,7 @@ const getData = async (req, res) => {
       debugInfo(`${req.method} ${req.url}`);
     } catch (e) {
       res.status(500).send(`Method:${req.method}, Data: ${req.url}, Error:${e}`);
+      debugError('500 Internal Server Error');
     }
 };
 
@@ -24,6 +25,7 @@ const addData = async (req, res) => {
       debugInfo(`${req.method}, ${req.body}`);
     } catch (e) {
       res.status(500).send(`Method:${req.method}, Data: ${req.body}, Error:${e}`);
+      debugError('500 Internal Server Error');
     }
 };
 
@@ -34,6 +36,7 @@ const updateData = async (req, res) => {
       debugInfo(`${req.method}, id:${req.params.id}, data:${req.body}`);
     } catch (e) {
       res.status(500).send(`Method:${req.method}, Data: { id:${req.params.id}, arguments:${req.body} }, Error:${e}`);
+      debugError('500 Internal Server Error');
     }
 };
 
@@ -44,6 +47,7 @@ const getOneOfData = async (req, res) => {
       debugInfo(`${req.method}, id:${req.params.id}`);
     } catch (e) {
       res.status(500).send(`Method:${req.method}, Data: { id:${req.params.id} }, Error:${e}`);
+      debugError('500 Internal Server Error');
     }
 };
 
@@ -54,6 +58,7 @@ const deleteData = async (req, res) => {
       debugInfo(`${req.method}, id:${req.params.id}`);
     } catch (e) {
       res.status(500).send(`Method:${req.method}, Data: { id:${req.params.id} }, Error:${e}`);
+      debugError('500 Internal Server Error');
     }
 };
 

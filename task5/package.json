@@ -8,7 +8,8 @@
     "task5": "nodemon ./task5.js",
     "build": "babel src -d lib",
     "debug": "cross-env-shell DEBUG=* node task5.js",
-    "debugInfo": "cross-env-shell DEBUG=info* node task5.js"
+    "debugInfo": "cross-env-shell DEBUG=info* node task5.js",
+    "debugError": "cross-env-shell DEBUG=error* node task5.js"
   },
   "repository": {
     "type": "git",
