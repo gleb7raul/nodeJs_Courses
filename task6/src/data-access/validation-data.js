@@ -20,4 +20,14 @@ const bodySchemaForSuggestLogin = Joi.object({
   login: Joi.string().required()
 });
 
-module.exports = { bodySchemaForCreate, bodySchemaForUpdate, paramsSchemaForUpdate, bodySchemaForSuggestLogin };
+const bodySchemaForAuthorization = Joi.object({
+    login: Joi.string()
+        .alphanum()
+        .required(),
+
+    password: Joi.string()
+        .pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/)
+        .required()
+});
+
+module.exports = { bodySchemaForCreate, bodySchemaForUpdate, paramsSchemaForUpdate, bodySchemaForSuggestLogin, bodySchemaForAuthorization };

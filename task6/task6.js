@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const bodyParser = require('body-parser');
 const port = 8080;
 const routers = require('./src/router/routers.js');
@@ -7,6 +8,7 @@ const init = require('./src/controllers/dataHelper');
 const logger = require('./src/middlewares/logger.js');
 const errorLogger = require('./src/middlewares/errorLogger.js');
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(logger);
