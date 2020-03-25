@@ -1,15 +1,15 @@
 {
-  "name": "homework_5",
+  "name": "homework_7",
   "version": "1.0.0",
-  "description": "nodeJs 5th homework",
-  "main": "task6.js",
+  "description": "nodeJs 7th homework",
+  "main": "task7.js",
   "scripts": {
-    "test": "jest --runInBand",
-    "task6": "nodemon ./task6.js",
+    "test": "jest --detectOpenHandles",
+    "task7": "nodemon ./task7.js",
     "build": "babel src -d lib",
-    "debug": "cross-env-shell DEBUG=* node task6.js",
-    "debugInfo": "cross-env-shell DEBUG=info* node task6.js",
-    "debugError": "cross-env-shell DEBUG=error* node task6.js"
+    "debug": "cross-env-shell DEBUG=* node task7.js",
+    "debugInfo": "cross-env-shell DEBUG=info* node task7.js",
+    "debugError": "cross-env-shell DEBUG=error* node task7.js"
   },
   "repository": {
     "type": "git",
@@ -50,5 +50,11 @@
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.3",
     "winston": "^3.2.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }

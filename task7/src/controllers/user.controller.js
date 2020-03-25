@@ -7,12 +7,12 @@ const db = require('./dataHelper/db.js');
 const userGroup = new UserGroup(UserGroupTable, UserTable, GroupTable, db);
 const user = new User(UserTable, userGroup, db);
 
-const getData = async (req, res) => {
+const getData = async (req, res, next) => {
     try {
       const data = await user.getUsers();
-      res.status(200).json(data);
+      res.json({});
     } catch (e) {
-      e;
+      next(e);
     }
 };
 
