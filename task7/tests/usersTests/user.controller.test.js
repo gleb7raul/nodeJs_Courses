@@ -1,26 +1,13 @@
 require( 'regenerator-runtime/runtime');
-const {
-    getData,
-    addData,
-    updateData,
-    getOneOfData,
-    deleteData,
-    suggestData
-} = require('./../../src/controllers/user.controller.js');
 const User = require('./../../src/controllers/models/user.model.js');
-
-//jest.mock('./../../src/controllers/models/user.model.js');
-const mockPlaySoundFile = jest.fn();
-jest.mock('./../../src/controllers/models/user.model.js', () => {
-    return jest.fn().mockImplementation(() => {
-      return {getUsers: mockPlaySoundFile};
-    });
-  });
-  const mockJson = jest.fn();
-  const mockNext = jest.fn();
-  const mockRes = {
+const testUser = new User();
+const mockJson = jest.fn();
+const mockRes = {
       json: mockJson
-  };
+};
+const req = {
+    body: {}
+};
 
 describe('User Controller', () => {
     beforeEach(() => {});
@@ -28,25 +15,59 @@ describe('User Controller', () => {
         jest.resetAllMocks();
     });
 
-    test('get Users - first edition', async () => {
-       await getData(mockJson, mockRes, mockNext);
-        expect(mockJson).toBeCalled();
-
-    });
-
-    test('get Users - second edition', async () => {
-        User.getUsers = jest.fn().mockImplementation(() => {
-			return {};
+    test('get Users', async () => {
+        testUser.getUsers = jest.fn().mockImplementation(() => {
+			return [{login: 'Hleb'}, {login: 'Anna'}];
 		});
-       await getData(mockJson, mockRes, mockNext);
-        expect(mockJson).toBeCalled();
+        const users = await testUser.getUsers();
 
+        expect(testUser.getUsers).toHaveBeenCalled();
+        expect(users.length).toEqual(2);
+        expect(users).toEqual([{login: 'Hleb'}, {login: 'Anna'}]);
     });
 
-    test('get Users - error', async () => {
-        await getData(mockJson, mockRes, mockNext);
-        expect(mockJson).toBeCalled();
+    test('set User', async () => {
+        testUser.setUser = jest.fn().mockImplementation(() => {
+			return [{login: 'Hleb'}];
+		});
+        const users = await testUser.setUser(req, mockRes);
 
+        expect(testUser.setUser).toHaveBeenCalled();
+        expect(users.length).toEqual(1);
+        expect(users[0]).toEqual({login: 'Hleb'});
+    });
+
+    test('delete User', async () => {
+        testUser.deleteUser = jest.fn().mockImplementation(() => {
+			return [];
+		});
+        const users = await testUser.deleteUser(req);
+
+        expect(testUser.deleteUser).toHaveBeenCalled();
+        expect(users.length).toEqual(0);
+        expect(users).toEqual([]);
+    });
+
+    test('update User', async () => {
+        testUser.updateUsers = jest.fn().mockImplementation(() => {
+			return [{login: 'Hleb'}];
+		});
+        const user = await testUser.updateUsers(req, mockRes);
+
+        expect(testUser.updateUsers).toHaveBeenCalled();
+        expect(user.length).toEqual(1);
+        expect(user[0].login).toEqual('Hleb');
+    });
+
+    test('get User', async () => {
+        testUser.getUser = jest.fn().mockImplementation(() => {
+			return [{login: 'Hleb'}];
+		});
+        const user = await testUser.getUser(req, mockRes);
+
+        expect(testUser.getUser).toHaveBeenCalled();
+        expect(user.length).toEqual(1);
+        expect(user[0]).toEqual({login: 'Hleb'});
     });
 
 });
