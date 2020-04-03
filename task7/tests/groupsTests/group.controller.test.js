@@ -17,7 +17,7 @@ describe('Group Controller', () => {
 
     test('get Groups', async () => {
         testGroup.getGroups = jest.fn().mockImplementation(() => {
-			return [{name: 'Cars'}, {name: 'Plans'}];
+			return Promise.resolve([{name: 'Cars'}, {name: 'Plans'}]);
 		});
         const groups = await testGroup.getGroups();
 
@@ -28,7 +28,7 @@ describe('Group Controller', () => {
 
     test('get Group By Id', async () => {
         testGroup.getGroupById = jest.fn().mockImplementation(() => {
-			return [{name: 'Cars'}];
+			return Promise.resolve([{name: 'Cars'}]);
 		});
         const group = await testGroup.getGroupById(req, mockRes);
 
@@ -39,7 +39,7 @@ describe('Group Controller', () => {
 
     test('update Group', async () => {
         testGroup.updateGroup = jest.fn().mockImplementation(() => {
-			return [{name: 'Girls'}];
+			return Promise.resolve([{name: 'Girls'}]);
 		});
         const group = await testGroup.updateGroup(req, mockRes);
 
@@ -50,7 +50,7 @@ describe('Group Controller', () => {
 
     test('create Group', async () => {
         testGroup.createGroup = jest.fn().mockImplementation(() => {
-			return [{name: 'Pens'}];
+			return Promise.resolve([{name: 'Pens'}]);
 		});
         const group = await testGroup.createGroup(req, mockRes);
 
@@ -61,7 +61,7 @@ describe('Group Controller', () => {
 
     test('remove Group', async () => {
         testGroup.removeGroup = jest.fn().mockImplementation(() => {
-			return [];
+			return Promise.resolve([]);
 		});
         const groups = await testGroup.removeGroup(req, mockRes);
 

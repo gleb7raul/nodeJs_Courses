@@ -17,7 +17,7 @@ describe('User Controller', () => {
 
     test('get Users', async () => {
         testUser.getUsers = jest.fn().mockImplementation(() => {
-			return [{login: 'Hleb'}, {login: 'Anna'}];
+			return Promise.resolve([{login: 'Hleb'}, {login: 'Anna'}]);
 		});
         const users = await testUser.getUsers();
 
@@ -28,7 +28,7 @@ describe('User Controller', () => {
 
     test('set User', async () => {
         testUser.setUser = jest.fn().mockImplementation(() => {
-			return [{login: 'Hleb'}];
+			return Promise.resolve([{login: 'Hleb'}]);
 		});
         const users = await testUser.setUser(req, mockRes);
 
@@ -39,7 +39,7 @@ describe('User Controller', () => {
 
     test('delete User', async () => {
         testUser.deleteUser = jest.fn().mockImplementation(() => {
-			return [];
+			return Promise.resolve([]);
 		});
         const users = await testUser.deleteUser(req);
 
@@ -50,7 +50,7 @@ describe('User Controller', () => {
 
     test('update User', async () => {
         testUser.updateUsers = jest.fn().mockImplementation(() => {
-			return [{login: 'Hleb'}];
+			return Promise.resolve([{login: 'Hleb'}]);
 		});
         const user = await testUser.updateUsers(req, mockRes);
 
@@ -61,7 +61,7 @@ describe('User Controller', () => {
 
     test('get User', async () => {
         testUser.getUser = jest.fn().mockImplementation(() => {
-			return [{login: 'Hleb'}];
+			return Promise.resolve([{login: 'Hleb'}]);
 		});
         const user = await testUser.getUser(req, mockRes);
 
