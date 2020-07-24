@@ -1,0 +1,60 @@
+{
+  "name": "homework_7",
+  "version": "1.0.0",
+  "description": "nodeJs 7th homework",
+  "main": "task7.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles",
+    "task7": "nodemon ./task7.js",
+    "build": "babel src -d lib",
+    "debug": "cross-env-shell DEBUG=* node task7.js",
+    "debugInfo": "cross-env-shell DEBUG=info* node task7.js",
+    "debugError": "cross-env-shell DEBUG=error* node task7.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gleb7raul/nodeJs_Courses.git"
+  },
+  "author": "Hleb Nebiadukhin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gleb7raul/nodeJs_Courses/issues"
+  },
+  "homepage": "https://github.com/gleb7raul/nodeJs_Courses#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.5",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "cross-env": "^7.0.0",
+    "eslint": "^6.7.2",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.1",
+    "regenerator-runtime": "^0.13.5",
+    "superagent": "^5.2.2",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "@hapi/joi": "^16.1.8",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-joi-validation": "^4.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^7.17.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.3",
+    "winston": "^3.2.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  }
+}
